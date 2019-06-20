@@ -29,17 +29,18 @@ export default class Scorecard extends Component<Props> {
 
   render() {
     const scores = [
-      ['Hole', 'Yards', 'Par', 'Player 1', 'Player 2'],
-      [1, 140, 3, 4, 5],
-      [2, 250, 4, 4, 6],
-      [3, 160, 3, 3, 3],
-      [4, 300, 5, 5, 6],
-      [5, 270, 4, 7, 3]
+      ['Hole', 'Yards', 'Par', 'Player 1', 'Player 2', 'Player 3', 'Player 4'],
+      [1, 140, 3, 4, 5, 4, 3],
+      [2, 250, 4, 4, 6, 5, 7],
+      [3, 160, 3, 3, 3, 2, 6],
+      [4, 300, 5, 5, 6, 6, 5],
+      [5, 270, 4, 7, 3, 6, 5]
      ];
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Scorecard</Text>
-        <Text style={styles.comment}>This is the scorecard!</Text>
+        <Text style={styles.comment}>Course: My Favourite Green</Text>
+        <Text style={styles.comment}>Date: 1st January 2000</Text>
         {
           scores.map((score) => {
             return this.renderRow(score);

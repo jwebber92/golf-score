@@ -1,0 +1,30 @@
+[{
+  "player": "1",
+  "hole1": {
+    "par": "3",
+    "score": "4"
+  },
+  "hole2": {
+    "par": "3",
+    "score": "4"
+  },
+  "hole3": {
+    "par": "3",
+    "score": "4"
+  }
+},
+{
+  "player": "2",
+  "hole1": {
+    "par": "3",
+    "score": "4"
+  },
+  "hole2": {
+    "par": "3",
+    "score": "4"
+  },
+  "hole3": {
+    "par": "3",
+    "score": "4"
+  }
+}]
