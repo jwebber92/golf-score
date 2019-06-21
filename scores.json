@@ -1,21 +1,25 @@
 [{
-  "id": "par",
-  "hole1": "3",
-  "hole2": "4",
-  "hole3": "5"
+  "holeNumber": "1",
+  "data": {
+    "par": "3",
+    "yards": "135",
+    "player1": "4",
+    "player2": "5"
+  }
 }, {
-  "id": "yards",
-  "hole1": "135",
-  "hole2": "210",
-  "hole3": "345"
+  "holeNumber": "2",
+  "data": {
+    "par": "4",
+    "yards": "210",
+    "player1": "4",
+    "player2": "5"
+  }
 }, {
-  "id": "Player 1",
-  "hole1": "4",
-  "hole2": "4",
-  "hole3": "7"
-}, {
-  "id": "Player 2",
-  "hole1": "5",
-  "hole2": "5",
-  "hole3": "5"
+  "holeNumber": "3",
+  "data": {
+    "par": "5",
+    "yards": "345",
+    "player1": "7",
+    "player2": "5"
+  }
 }]

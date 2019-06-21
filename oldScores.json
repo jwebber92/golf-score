@@ -1,0 +1,21 @@
+[{
+  "id": "par",
+  "hole1": "3",
+  "hole2": "4",
+  "hole3": "5"
+}, {
+  "id": "yards",
+  "hole1": "135",
+  "hole2": "210",
+  "hole3": "345"
+}, {
+  "id": "Player 1",
+  "hole1": "4",
+  "hole2": "4",
+  "hole3": "7"
+}, {
+  "id": "Player 2",
+  "hole1": "5",
+  "hole2": "5",
+  "hole3": "5"
+}]
