@@ -6,17 +6,28 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import scores from './scores.json';
 
+const maxHoles = 4;
+
 type Props = {};
 export default class Scorecard extends Component<Props> {
-  renderCell(data) {
+  renderHolesRow() {
+    let holesNo = [];
+    for (let i=1; i<maxHoles; i++) {
+      holesNo.push(<Text style={styles.cell}>{i}</Text>)
+    }
+
     return (
-      <Text style={styles.comment}>{data}</Text>
+      <View style={styles.row} key="holeNo">
+        <Text style={styles.cell}>Hole</Text>
+        {holesNo}
+      </View>
     )
   }
 
   renderRow(row) {
+    // Using array might cause 'key' prop errors
     let cells = [];
-    for (let i=1; i<4; i++) {
+    for (let i=1; i<maxHoles; i++) {
       cells.push(<Text style={styles.cell}>{row["hole"+i]}</Text>)
     }
 
@@ -34,6 +45,7 @@ export default class Scorecard extends Component<Props> {
         <Text style={styles.title}>Scorecard</Text>
         <Text style={styles.comment}>Course: My Favourite Green</Text>
         <Text style={styles.comment}>Date: 1st January 2000</Text>
+        {this.renderHolesRow()}
         {
           scores.map((score) => {
             return this.renderRow(score);
