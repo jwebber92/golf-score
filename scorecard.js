@@ -4,38 +4,31 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import scores from './scores.json';
 
 type Props = {};
 export default class Scorecard extends Component<Props> {
-  renderColumn(column) {
+  renderCell(data) {
     return (
-      <View style={styles.cell}>
-        <Text style={styles.comment}>{column}</Text>
-      </View>
+      <Text style={styles.comment}>{data}</Text>
     )
   }
 
   renderRow(row) {
+    let cells = [];
+    for (let i=1; i<4; i++) {
+      cells.push(<Text style={styles.cell}>{row["hole"+i]}</Text>)
+    }
+
     return (
-      <View style={styles.row}>
-        {
-          row.map((column) => {
-            return this.renderColumn(column);
-          })
-        }
+      <View style={styles.row} key={row.id}>
+        <Text style={styles.cell}>{row.id}</Text>
+        {cells}
       </View>
     );
   }
 
   render() {
-    const scores = [
-      ['Hole', 'Yards', 'Par', 'Player 1', 'Player 2', 'Player 3', 'Player 4'],
-      [1, 140, 3, 4, 5, 4, 3],
-      [2, 250, 4, 4, 6, 5, 7],
-      [3, 160, 3, 3, 3, 2, 6],
-      [4, 300, 5, 5, 6, 6, 5],
-      [5, 270, 4, 7, 3, 6, 5]
-     ];
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Scorecard</Text>
