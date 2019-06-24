@@ -84,12 +84,14 @@ const styles = StyleSheet.create({
   row: {
     display: 'flex',
     flexDirection: 'row',
+//    flex: 1,
 //    width: '100%',
     padding: 5,
   },
   column: {
     display: 'flex',
     flexDirection: 'column',
+    flex: 1,
 //    flexBasis: '100%',
 //    flex: 1,
     padding: 10,

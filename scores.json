@@ -22,4 +22,42 @@
     "player1": "7",
     "player2": "5"
   }
+}, {
+  "holeNumber": "4",
+  "data": {
+    "par": "3",
+    "yards": "160"
+  }
+}, {
+  "holeNumber": "5",
+  "data": {
+    "par": "5",
+    "yards": "290"
+  }
+}, {
+  "holeNumber": "6",
+  "data": {
+    "par": "5",
+    "yards": "310"
+  }
+}, {
+  "holeNumber": "7",
+  "data": {
+    "par": "4",
+    "yards": "260"
+  }
+}, {
+  "holeNumber": "8",
+  "data": {
+    "par": "5",
+    "yards": "345"
+  }
+}, {
+  "holeNumber": "9",
+  "data": {
+    "par": "3",
+    "yards": "125",
+    "player1": "4",
+    "player2": "4"
+  }
 }]
