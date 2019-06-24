@@ -1,63 +1,65 @@
 [{
-  "holeNumber": "1",
+  "holeNumber": 1,
   "data": {
-    "par": "3",
-    "yards": "135",
-    "player1": "4",
-    "player2": "5"
+    "par": 3,
+    "yards": 135,
+    "player1": 4,
+    "player2": 5
   }
 }, {
-  "holeNumber": "2",
+  "holeNumber": 2,
   "data": {
-    "par": "4",
-    "yards": "210",
-    "player1": "4",
-    "player2": "5"
+    "par": 4,
+    "yards": 210,
+    "player1": 4,
+    "player2": 5
   }
 }, {
-  "holeNumber": "3",
+  "holeNumber": 3,
   "data": {
-    "par": "5",
-    "yards": "345",
-    "player1": "7",
-    "player2": "5"
+    "par": 5,
+    "yards": 345,
+    "player1": 7,
+    "player2": 5
   }
 }, {
-  "holeNumber": "4",
+  "holeNumber": 4,
   "data": {
-    "par": "3",
-    "yards": "160"
+    "par": 3,
+    "yards": 160,
+    "player1": 3,
+    "player2": 4
   }
 }, {
-  "holeNumber": "5",
+  "holeNumber": 5,
   "data": {
-    "par": "5",
-    "yards": "290"
+    "par": 5,
+    "yards": 290
   }
 }, {
-  "holeNumber": "6",
+  "holeNumber": 6,
   "data": {
-    "par": "5",
-    "yards": "310"
+    "par": 5,
+    "yards": 310
   }
 }, {
-  "holeNumber": "7",
+  "holeNumber": 7,
   "data": {
-    "par": "4",
-    "yards": "260"
+    "par": 4,
+    "yards": 260
   }
 }, {
-  "holeNumber": "8",
+  "holeNumber": 8,
   "data": {
-    "par": "5",
-    "yards": "345"
+    "par": 5,
+    "yards": 345
   }
 }, {
-  "holeNumber": "9",
+  "holeNumber": 9,
   "data": {
-    "par": "3",
-    "yards": "125",
-    "player1": "4",
-    "player2": "4"
+    "par": 3,
+    "yards": 125,
+    "player1": 4,
+    "player2": 4
   }
 }]

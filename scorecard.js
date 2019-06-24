@@ -26,6 +26,35 @@ export default class Scorecard extends Component<Props> {
     )
   }
 
+  calculateTotalScore(playerName) {
+    let playerTotal = 0;
+    scores.map((score) => {
+      if (score.data[playerName]) {
+        playerTotal += score.data[playerName];
+      }
+    })
+    return playerTotal
+  }
+
+  renderTotalRow() {
+    let playerTotals = [];
+    for (let i=1; i<numberOfPlayers+1; i++) {
+      let totalScore = this.calculateTotalScore(["player"+i])
+      playerTotals.push(<Text style={styles.column}>{totalScore}</Text>)
+    }
+    let parTotal = this.calculateTotalScore("par");
+    let yardsTotal = this.calculateTotalScore("yards");
+
+    return (
+      <View style={styles.row} key="totalsRow">
+        <Text style={styles.column}>TOTAL</Text>
+        <Text style={styles.column}>{parTotal}</Text>
+        <Text style={styles.column}>{yardsTotal}</Text>
+        {playerTotals}
+      </View>
+    )
+  }
+
   renderRow(row) {
     // Using array might cause 'key' prop errors
     let playerScores = [];
@@ -34,7 +63,7 @@ export default class Scorecard extends Component<Props> {
     }
 
     return (
-      <View style={styles.row} key={row.holeNumber}>
+      <View style={styles.row} key={"Hole" + row.holeNumber}>
         <Text style={styles.column}>{row.holeNumber}</Text>
         <Text style={styles.column}>{row.data.par}</Text>
         <Text style={styles.column}>{row.data.yards}</Text>
@@ -55,6 +84,7 @@ export default class Scorecard extends Component<Props> {
             return this.renderRow(score);
           })
         }
+        {this.renderTotalRow()}
       </View>
     )
   }
