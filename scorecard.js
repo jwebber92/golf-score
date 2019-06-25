@@ -4,12 +4,16 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TextInput} from 'react-native';
-import scores from './scores.json';
+import scoresJson from './scores.json';
 
 const numberOfPlayers = 2;
 
 type Props = {};
 export default class Scorecard extends Component<Props> {
+  state = {
+    scores: scoresJson
+  }
+
   renderTitleRow() {
     let playerNames = [];
     for (let i=1; i<numberOfPlayers+1; i++) {
@@ -28,7 +32,7 @@ export default class Scorecard extends Component<Props> {
 
   calculateTotalScore(playerName) {
     let playerTotal = 0;
-    scores.map((score) => {
+    this.state.scores.map((score) => {
       if (score.data[playerName]) {
         playerTotal += score.data[playerName];
       }
@@ -87,7 +91,7 @@ export default class Scorecard extends Component<Props> {
         <Text style={styles.comment}>Date: 1st January 2000</Text>
         {this.renderTitleRow()}
         {
-          scores.map((score) => {
+          this.state.scores.map((score) => {
             return this.renderRow(score);
           })
         }
