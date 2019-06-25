@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TextInput} from 'react-native';
 import scores from './scores.json';
 
 const numberOfPlayers = 2;
@@ -59,7 +59,14 @@ export default class Scorecard extends Component<Props> {
     // Using array might cause 'key' prop errors
     let playerScores = [];
     for (let i=1; i<numberOfPlayers+1; i++) {
-      playerScores.push(<Text style={styles.column}>{row.data["player"+i]}</Text>)
+      playerScores.push(
+        <TextInput
+          style={styles.column}
+          keyboardType='numeric'
+        >
+          {row.data["player"+i]}
+        </TextInput>
+      )
     }
 
     return (
@@ -122,8 +129,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
 //    flexBasis: '100%',
 //    flex: 1,
-    padding: 10,
+    padding: 5,
   },
 });
