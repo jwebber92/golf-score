@@ -11,8 +11,7 @@ export default class Scorecard extends Component<Props> {
   state = {
     scores: scoresJson,
     numberOfPlayers: 2,
-    numberOfHoles: 9,
-    test: 'test'
+    numberOfHoles: 9
   }
 
   renderTitleRow() {
@@ -80,11 +79,11 @@ export default class Scorecard extends Component<Props> {
           keyboardType='numeric'
           maxLength={2}
           onChangeText={(text) => {
-//            let newScores = Object.assign({}, this.state.scores);
-//            newScores[row.holeNumber - 1]["player"+i] = text;
-//            this.setState({scores: newScores})
-//            this.setState({scores[row.holeNumber-1]["player"+i]: text})
-            this.setState({test: text});
+            this.setState(prevState => ({
+              scores: prevState.scores.map(
+                hole => (hole.holeNumber === row.holeNumber ? Object.assign(hole, {["player"+i]: parseInt(text)}) : hole)
+              )
+            }))
           }}
         >
           {row["player"+i]}
@@ -111,7 +110,6 @@ export default class Scorecard extends Component<Props> {
         {this.renderTitleRow()}
         {this.renderScoreRows()}
         {this.renderTotalRow()}
-        <Text>{this.state.test}</Text>
       </View>
     )
   }
