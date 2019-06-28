@@ -6,17 +6,18 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 import scoresJson from './scores.json';
 
-const numberOfPlayers = 2;
-
 type Props = {};
 export default class Scorecard extends Component<Props> {
   state = {
-    scores: scoresJson
+    scores: scoresJson,
+    numberOfPlayers: 2,
+    numberOfHoles: 9,
+    test: 'test'
   }
 
   renderTitleRow() {
     let playerNames = [];
-    for (let i=1; i<numberOfPlayers+1; i++) {
+    for (let i=1; i<this.state.numberOfPlayers+1; i++) {
       playerNames.push(<Text style={styles.column}>{"Player "+i}</Text>)
     }
 
@@ -33,8 +34,8 @@ export default class Scorecard extends Component<Props> {
   calculateTotalScore(playerName) {
     let playerTotal = 0;
     this.state.scores.map((score) => {
-      if (score.data[playerName]) {
-        playerTotal += score.data[playerName];
+      if (score[playerName]) {
+        playerTotal += score[playerName];
       }
     })
     return playerTotal
@@ -42,7 +43,7 @@ export default class Scorecard extends Component<Props> {
 
   renderTotalRow() {
     let playerTotals = [];
-    for (let i=1; i<numberOfPlayers+1; i++) {
+    for (let i=1; i<this.state.numberOfPlayers+1; i++) {
       let totalScore = this.calculateTotalScore(["player"+i])
       playerTotals.push(<Text style={styles.column}>{totalScore}</Text>)
     }
@@ -59,16 +60,34 @@ export default class Scorecard extends Component<Props> {
     )
   }
 
+  renderScoreRows() {
+    let scoreRows = [];
+    for (let i=0; i<this.state.numberOfHoles; i++) {
+      let score = this.state.scores[i];
+      scoreRows.push(this.renderRow(score));
+    }
+
+    return (scoreRows)
+  }
+
   renderRow(row) {
     // Using array might cause 'key' prop errors
     let playerScores = [];
-    for (let i=1; i<numberOfPlayers+1; i++) {
+    for (let i=1; i<this.state.numberOfPlayers+1; i++) {
       playerScores.push(
         <TextInput
           style={styles.column}
           keyboardType='numeric'
+          maxLength={2}
+          onChangeText={(text) => {
+//            let newScores = Object.assign({}, this.state.scores);
+//            newScores[row.holeNumber - 1]["player"+i] = text;
+//            this.setState({scores: newScores})
+//            this.setState({scores[row.holeNumber-1]["player"+i]: text})
+            this.setState({test: text});
+          }}
         >
-          {row.data["player"+i]}
+          {row["player"+i]}
         </TextInput>
       )
     }
@@ -76,8 +95,8 @@ export default class Scorecard extends Component<Props> {
     return (
       <View style={styles.row} key={"Hole" + row.holeNumber}>
         <Text style={styles.column}>{row.holeNumber}</Text>
-        <Text style={styles.column}>{row.data.par}</Text>
-        <Text style={styles.column}>{row.data.yards}</Text>
+        <Text style={styles.column}>{row.par}</Text>
+        <Text style={styles.column}>{row.yards}</Text>
         {playerScores}
       </View>
     );
@@ -90,12 +109,9 @@ export default class Scorecard extends Component<Props> {
         <Text style={styles.comment}>Course: My Favourite Green</Text>
         <Text style={styles.comment}>Date: 1st January 2000</Text>
         {this.renderTitleRow()}
-        {
-          this.state.scores.map((score) => {
-            return this.renderRow(score);
-          })
-        }
+        {this.renderScoreRows()}
         {this.renderTotalRow()}
+        <Text>{this.state.test}</Text>
       </View>
     )
   }
