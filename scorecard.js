@@ -17,7 +17,7 @@ export default class Scorecard extends Component<Props> {
   renderTitleRow() {
     let playerNames = [];
     for (let i=1; i<this.state.numberOfPlayers+1; i++) {
-      playerNames.push(<Text style={styles.column}>{"Player "+i}</Text>)
+      playerNames.push(<Text key={"player"+i+"name"} style={styles.column}>{"Player "+i}</Text>)
     }
 
     return (
@@ -44,7 +44,7 @@ export default class Scorecard extends Component<Props> {
     let playerTotals = [];
     for (let i=1; i<this.state.numberOfPlayers+1; i++) {
       let totalScore = this.calculateTotalScore(["player"+i])
-      playerTotals.push(<Text style={styles.column}>{totalScore}</Text>)
+      playerTotals.push(<Text key={"player"+i+"total"} style={styles.column}>{totalScore}</Text>)
     }
     let parTotal = this.calculateTotalScore("par");
     let yardsTotal = this.calculateTotalScore("yards");
@@ -75,6 +75,7 @@ export default class Scorecard extends Component<Props> {
     for (let i=1; i<this.state.numberOfPlayers+1; i++) {
       playerScores.push(
         <TextInput
+          key={"player"+i+"score"+row.holeNumber}
           style={styles.column}
           keyboardType='numeric'
           maxLength={2}
