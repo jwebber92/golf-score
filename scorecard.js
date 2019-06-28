@@ -86,7 +86,7 @@ export default class Scorecard extends Component<Props> {
             }))
           }}
         >
-          {row["player"+i]}
+          {row["player"+i] ? row["player"+i] : ''}
         </TextInput>
       )
     }
