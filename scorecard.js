@@ -24,7 +24,7 @@ export default class Scorecard extends Component<Props> {
       <View style={styles.row} key="titleRow">
         <Text style={styles.column}>Hole</Text>
         <Text style={styles.column}>Par</Text>
-        <Text style={styles.column}>Yards</Text>
+        <Text style={[styles.column, styles.yardsCol]}>Yards</Text>
         {playerNames}
       </View>
     )
@@ -50,10 +50,10 @@ export default class Scorecard extends Component<Props> {
     let yardsTotal = this.calculateTotalScore("yards");
 
     return (
-      <View style={styles.row} key="totalsRow">
+      <View style={[styles.row, styles.totalRow]} key="totalsRow">
         <Text style={styles.column}>TOTAL</Text>
         <Text style={styles.column}>{parTotal}</Text>
-        <Text style={styles.column}>{yardsTotal}</Text>
+        <Text style={[styles.column, styles.yardsCol]}>{yardsTotal}</Text>
         {playerTotals}
       </View>
     )
@@ -70,7 +70,6 @@ export default class Scorecard extends Component<Props> {
   }
 
   renderRow(row) {
-    // Using array might cause 'key' prop errors
     let playerScores = [];
     for (let i=1; i<this.state.numberOfPlayers+1; i++) {
       playerScores.push(
@@ -96,7 +95,7 @@ export default class Scorecard extends Component<Props> {
       <View style={styles.row} key={"Hole" + row.holeNumber}>
         <Text style={styles.column}>{row.holeNumber}</Text>
         <Text style={styles.column}>{row.par}</Text>
-        <Text style={styles.column}>{row.yards}</Text>
+        <Text style={[styles.column, styles.yardsCol]}>{row.yards}</Text>
         {playerScores}
       </View>
     );
@@ -142,7 +141,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
 //    flex: 1,
 //    width: '100%',
-    padding: 5,
+  },
+  totalRow: {
+    borderTopWidth: 1.5,
   },
   column: {
     display: 'flex',
@@ -153,5 +154,10 @@ const styles = StyleSheet.create({
 //    flexBasis: '100%',
 //    flex: 1,
     padding: 5,
+    color: '#333333',
+    borderWidth: 0.5,
+  },
+  yardsCol: {
+    backgroundColor: 'yellow',
   },
 });
