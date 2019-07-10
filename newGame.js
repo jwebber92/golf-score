@@ -3,26 +3,30 @@
  */
 
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TextInput, Button, Alert} from 'react-native';
+import {StyleSheet, Text, View, TextInput, Alert, Button, TouchableHighlight} from 'react-native';
 
 type Props = {};
 export default class NewGame extends Component<Props> {
   setupHoles() {
     return (
       <View>
-        <Text>How many holes are you playing?</Text>
-        <Button
-          onPress={() => {
-            Alert.alert("9");
-          }}
-          title="9 holes"
-        />
-        <Button
-          onPress={() => {
-            Alert.alert("18");
-          }}
-          title="18 holes"
-        />
+        <Text style={styles.header}>How many holes are you playing?</Text>
+        <View style={styles.holesView}>
+          <TouchableHighlight
+            onPress={() => {
+              Alert.alert("9");
+            }}
+          >
+            <Text style={styles.holesButtonInactive}>9 holes</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={() => {
+              Alert.alert("18");
+            }}
+          >
+            <Text style={styles.holesButtonInactive}>18 holes</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
@@ -49,7 +53,7 @@ export default class NewGame extends Component<Props> {
 
     return (
       <View>
-        <Text>Enter up to 4 players</Text>
+        <Text style={styles.header}>Enter up to 4 players</Text>
         {playerNameInputs}
       </View>
     )
@@ -58,9 +62,44 @@ export default class NewGame extends Component<Props> {
   render() {
     return(
       <View>
+        <Text style={styles.pageHeader}>New Round</Text>
         {this.setupHoles()}
         {this.setupPlayers()}
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  pageHeader: {
+    textAlign: 'center',
+    padding: 10,
+    fontSize: 30,
+    color: 'black'
+  },
+  header: {
+    textAlign: 'center',
+    padding: 20,
+    fontSize: 20,
+    color: 'black'
+  },
+  holesView: {
+//    display: 'flex',
+    flexDirection: 'row',
+//    flex: 1,
+//    width: '100%',
+  },
+  holesButtonInactive: {
+    backgroundColor: 'white',
+    borderColor: 'black',
+    borderWidth: 1,
+    textAlign: 'center',
+    paddingTop: 40,
+    paddingBottom: 40,
+    marginLeft: 20,
+    width: 150,
+//    flex: 1,
+  },
+  playersInput: {
+  }
+});
