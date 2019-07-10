@@ -27,10 +27,39 @@ export default class NewGame extends Component<Props> {
     )
   }
 
+  setupPlayers() {
+    let playerNameInputs = [];
+    for (let i=1; i<5; i++) {
+      playerNameInputs.push(
+        <TextInput
+          key={"player"+i}
+//          style={styles.column}
+//          onChangeText={(text) => {
+//            this.setState(prevState => ({
+//              scores: prevState.scores.map(
+//                hole => (hole.holeNumber === row.holeNumber ? Object.assign(hole, {["player"+i]: parseInt(text)}) : hole)
+//              )
+//            }))
+//          }}
+        >
+          {"Player" + i}
+        </TextInput>
+      )
+    }
+
+    return (
+      <View>
+        <Text>Enter up to 4 players</Text>
+        {playerNameInputs}
+      </View>
+    )
+  }
+
   render() {
     return(
       <View>
         {this.setupHoles()}
+        {this.setupPlayers()}
       </View>
     )
   }
