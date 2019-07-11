@@ -13,18 +13,20 @@ export default class NewGame extends Component<Props> {
         <Text style={styles.header}>How many holes are you playing?</Text>
         <View style={styles.holesView}>
           <TouchableHighlight
+            style={styles.holesButtonBox}
             onPress={() => {
               Alert.alert("9");
             }}
           >
-            <Text style={styles.holesButtonInactive}>9 holes</Text>
+            <Text style={styles.holesButtonText}>9 holes</Text>
           </TouchableHighlight>
           <TouchableHighlight
+            style={styles.holesButtonBox}
             onPress={() => {
               Alert.alert("18");
             }}
           >
-            <Text style={styles.holesButtonInactive}>18 holes</Text>
+            <Text style={styles.holesButtonText}>18 holes</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -37,7 +39,8 @@ export default class NewGame extends Component<Props> {
       playerNameInputs.push(
         <TextInput
           key={"player"+i}
-//          style={styles.column}
+          style={styles.playersInput}
+          placeholder={"Player" + i}
 //          onChangeText={(text) => {
 //            this.setState(prevState => ({
 //              scores: prevState.scores.map(
@@ -45,9 +48,7 @@ export default class NewGame extends Component<Props> {
 //              )
 //            }))
 //          }}
-        >
-          {"Player" + i}
-        </TextInput>
+        />
       )
     }
 
@@ -84,22 +85,32 @@ const styles = StyleSheet.create({
     color: 'black'
   },
   holesView: {
-//    display: 'flex',
     flexDirection: 'row',
-//    flex: 1,
-//    width: '100%',
   },
-  holesButtonInactive: {
+  holesButtonBox: {
+    flex: 1,
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 40,
+  },
+  holesButtonText: {
     backgroundColor: 'white',
     borderColor: 'black',
     borderWidth: 1,
+    borderRadius: 10,
     textAlign: 'center',
-    paddingTop: 40,
-    paddingBottom: 40,
-    marginLeft: 20,
-    width: 150,
-//    flex: 1,
+    paddingTop: 60,
+    paddingBottom: 60,
   },
   playersInput: {
+    marginLeft: 20,
+    marginRight: 20,
+    paddingLeft: 10,
+    marginBottom: 20,
+    fontSize: 16,
+    borderLeftColor: 'grey',
+    borderStyle: 'dotted',
+    borderLeftWidth: 5,
+    backgroundColor: '#ededed',
   }
 });
