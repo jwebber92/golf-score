@@ -50,6 +50,12 @@ export default class NewGame extends Component<Props> {
     )
   }
 
+  addPlayer(name) {
+    this.setState(prevState => ({
+      players: prevState.players.concat(name)
+    }));
+  }
+
   setupPlayers() {
     let playerNameInputs = [];
     for (let i=1; i<5; i++) {
@@ -57,14 +63,13 @@ export default class NewGame extends Component<Props> {
         <TextInput
           key={"player"+i}
           style={[styles.playersInput,
-          {backgroundColor: value ? '#75f077' : '#ededed'}
+//          {backgroundColor: value ? '#75f077' : '#ededed'}
+            {backgroundColor: '#ededed'}
           ]}
           placeholder={"Player" + i}
-//          onSubmitEditing={(text) => {
-//            this.setState(prevState => ({
-//              players: prevState.players.concat(text)
-//            }))
-//          }}
+          onSubmitEditing={(event) => {
+            this.addPlayer(event.nativeEvent.text);
+          }}
         />
       )
     }
@@ -86,7 +91,7 @@ export default class NewGame extends Component<Props> {
         <TouchableHighlight
           style={styles.submitButtonBox}
           onPress={() => {
-            Alert.alert("pressed the submit button!");
+            Alert.alert("Holes: " + this.state.holes + "\nPlayers: " + this.state.players);
           }}
         >
           <Text style={styles.submitButtonText}>Start new round!</Text>
