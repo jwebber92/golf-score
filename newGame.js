@@ -24,11 +24,10 @@ export default class NewGame extends Component<Props> {
             }}
           >
             <Text
-              style={
-              this.state.holes === 9
-              ? styles.holesButtonTextActive
-              : styles.holesButtonText
-              }>
+              style={[styles.holesButtonText,
+              {backgroundColor: (this.state.holes === 9 ? '#75f077' : '#ededed')}
+              ]}
+            >
               9 holes
             </Text>
           </TouchableHighlight>
@@ -39,11 +38,10 @@ export default class NewGame extends Component<Props> {
             }}
           >
             <Text
-              style={
-              this.state.holes === 18
-              ? styles.holesButtonTextActive
-              : styles.holesButtonText
-              }>
+              style={[styles.holesButtonText,
+              {backgroundColor: (this.state.holes === 18 ? '#75f077' : '#ededed')}
+              ]}
+            >
               18 holes
             </Text>
           </TouchableHighlight>
@@ -58,13 +56,13 @@ export default class NewGame extends Component<Props> {
       playerNameInputs.push(
         <TextInput
           key={"player"+i}
-          style={styles.playersInput}
+          style={[styles.playersInput,
+          {backgroundColor: value ? '#75f077' : '#ededed'}
+          ]}
           placeholder={"Player" + i}
-//          onChangeText={(text) => {
+//          onSubmitEditing={(text) => {
 //            this.setState(prevState => ({
-//              scores: prevState.scores.map(
-//                hole => (hole.holeNumber === row.holeNumber ? Object.assign(hole, {["player"+i]: parseInt(text)}) : hole)
-//              )
+//              players: prevState.players.concat(text)
 //            }))
 //          }}
         />
@@ -85,6 +83,14 @@ export default class NewGame extends Component<Props> {
         <Text style={styles.pageHeader}>New Round</Text>
         {this.setupHoles()}
         {this.setupPlayers()}
+        <TouchableHighlight
+          style={styles.submitButtonBox}
+          onPress={() => {
+            Alert.alert("pressed the submit button!");
+          }}
+        >
+          <Text style={styles.submitButtonText}>Start new round!</Text>
+        </TouchableHighlight>
       </View>
     )
   }
@@ -99,7 +105,7 @@ const styles = StyleSheet.create({
   },
   header: {
     textAlign: 'center',
-    padding: 20,
+    paddingBottom: 20,
     fontSize: 20,
     color: 'black'
   },
@@ -110,23 +116,11 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 20,
     marginRight: 20,
-    marginBottom: 40,
+    marginBottom: 20,
   },
   holesButtonText: {
     color: 'black',
-    backgroundColor: 'white',
     borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 10,
-    textAlign: 'center',
-    paddingTop: 60,
-    paddingBottom: 60,
-    fontSize: 16,
-  },
-  holesButtonTextActive: {
-    color: '#1e661e',
-    backgroundColor: '#a2ffa1',
-    borderColor: '#1e661e',
     borderWidth: 1,
     borderRadius: 10,
     textAlign: 'center',
@@ -143,6 +137,17 @@ const styles = StyleSheet.create({
     borderLeftColor: 'grey',
     borderStyle: 'dotted',
     borderLeftWidth: 5,
-    backgroundColor: '#ededed',
+  },
+  submitButtonBox: {
+    marginTop: 10,
+    marginRight: 30,
+    marginLeft: 30,
+  },
+  submitButtonText: {
+    color: 'black',
+    fontSize: 18,
+    backgroundColor: '#75f077',
+    textAlign: 'center',
+    padding: 10,
   }
 });
