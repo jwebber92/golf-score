@@ -7,6 +7,11 @@ import {StyleSheet, Text, View, TextInput, Alert, Button, TouchableHighlight} fr
 
 type Props = {};
 export default class NewGame extends Component<Props> {
+  state={
+    holes: 0,
+    players: []
+  }
+
   setupHoles() {
     return (
       <View>
@@ -15,18 +20,32 @@ export default class NewGame extends Component<Props> {
           <TouchableHighlight
             style={styles.holesButtonBox}
             onPress={() => {
-              Alert.alert("9");
+              this.setState({holes: 9});
             }}
           >
-            <Text style={styles.holesButtonText}>9 holes</Text>
+            <Text
+              style={
+              this.state.holes === 9
+              ? styles.holesButtonTextActive
+              : styles.holesButtonText
+              }>
+              9 holes
+            </Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.holesButtonBox}
             onPress={() => {
-              Alert.alert("18");
+              this.setState({holes: 18});
             }}
           >
-            <Text style={styles.holesButtonText}>18 holes</Text>
+            <Text
+              style={
+              this.state.holes === 18
+              ? styles.holesButtonTextActive
+              : styles.holesButtonText
+              }>
+              18 holes
+            </Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -94,6 +113,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   holesButtonText: {
+    color: 'black',
     backgroundColor: 'white',
     borderColor: 'black',
     borderWidth: 1,
@@ -101,6 +121,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingTop: 60,
     paddingBottom: 60,
+    fontSize: 16,
+  },
+  holesButtonTextActive: {
+    color: '#1e661e',
+    backgroundColor: '#a2ffa1',
+    borderColor: '#1e661e',
+    borderWidth: 1,
+    borderRadius: 10,
+    textAlign: 'center',
+    paddingTop: 60,
+    paddingBottom: 60,
+    fontSize: 16,
   },
   playersInput: {
     marginLeft: 20,
