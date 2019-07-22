@@ -9,7 +9,11 @@ type Props = {};
 export default class NewGame extends Component<Props> {
   state={
     holes: 0,
-    players: []
+    players: [],
+//    player1: '',
+//    player2: '',
+//    player3: '',
+//    player4: '',
   }
 
   setupHoles() {
@@ -52,6 +56,7 @@ export default class NewGame extends Component<Props> {
 
   addPlayer(name) {
     this.setState(prevState => ({
+      // TODO allow editing of player name
       players: prevState.players.concat(name)
     }));
   }
@@ -63,8 +68,8 @@ export default class NewGame extends Component<Props> {
         <TextInput
           key={"player"+i}
           style={[styles.playersInput,
-//          {backgroundColor: value ? '#75f077' : '#ededed'}
-            {backgroundColor: '#ededed'}
+            {backgroundColor: (this.value ? '#75f077' : '#ededed')}
+//            {backgroundColor: '#ededed'}
           ]}
           placeholder={"Player" + i}
           onSubmitEditing={(event) => {
