@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TextInput, Alert, Button, TouchableHighlight} from 'react-native';
+import {StyleSheet, Text, View, TextInput, Alert, TouchableHighlight} from 'react-native';
 
 type Props = {};
 export default class NewGame extends Component<Props> {
@@ -97,6 +97,7 @@ export default class NewGame extends Component<Props> {
           style={styles.submitButtonBox}
           onPress={() => {
             Alert.alert("Holes: " + this.state.holes + "\nPlayers: " + this.state.players);
+            this.props.navigation.navigate('Scorecard');
           }}
         >
           <Text style={styles.submitButtonText}>Start new round!</Text>
