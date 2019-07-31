@@ -97,7 +97,11 @@ export default class NewGame extends Component<Props> {
           style={styles.submitButtonBox}
           onPress={() => {
             Alert.alert("Holes: " + this.state.holes + "\nPlayers: " + this.state.players);
-            this.props.navigation.navigate('Scorecard');
+            this.props.navigation.navigate('Scorecard', {
+              numberOfPlayers: this.state.players.length,
+              playerNames: this.state.players,
+              numberOfHoles: this.state.holes
+            });
           }}
         >
           <Text style={styles.submitButtonText}>Start new round!</Text>

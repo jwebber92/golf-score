@@ -6,18 +6,18 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 import scoresJson from './scores.json';
 
-type Props = {};
-export default class Scorecard extends Component<Props> {
+export default class Scorecard extends Component {
   state = {
     scores: scoresJson,
-    numberOfPlayers: 2,
-    numberOfHoles: 9
+    numberOfPlayers: this.props.navigation.getParam('numberOfPlayers', 2),
+    numberOfHoles: this.props.navigation.getParam('numberOfHoles', 9),
+    playerNames: this.props.navigation.getParam('playerNames', [])
   }
 
   renderTitleRow() {
     let playerNames = [];
     for (let i=1; i<this.state.numberOfPlayers+1; i++) {
-      playerNames.push(<Text key={"player"+i+"name"} style={styles.column}>{"Player "+i}</Text>)
+      playerNames.push(<Text key={"player"+i+"name"} style={styles.column}>{this.state.playerNames[i-1] || ("Player "+i)}</Text>)
     }
 
     return (
