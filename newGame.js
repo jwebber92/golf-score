@@ -96,8 +96,13 @@ export default class NewGame extends Component<Props> {
         <TouchableHighlight
           style={styles.submitButtonBox}
           onPress={() => {
-            Alert.alert("Holes: " + this.state.holes + "\nPlayers: " + this.state.players);
+            let emptyScores = [];
+            for (i=1; i<this.state.holes + 1; i++) {
+              let hole = {"holeNumber": i};
+              emptyScores.push(hole);
+            }
             this.props.navigation.navigate('Scorecard', {
+              emptyScores: emptyScores,
               numberOfPlayers: this.state.players.length,
               playerNames: this.state.players,
               numberOfHoles: this.state.holes

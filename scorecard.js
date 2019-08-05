@@ -8,7 +8,7 @@ import scoresJson from './scores.json';
 
 export default class Scorecard extends Component {
   state = {
-    scores: scoresJson,
+    scores: this.props.navigation.getParam('emptyScores', scoresJson),
     numberOfPlayers: this.props.navigation.getParam('numberOfPlayers', 2),
     numberOfHoles: this.props.navigation.getParam('numberOfHoles', 9),
     playerNames: this.props.navigation.getParam('playerNames', [])
