@@ -94,8 +94,38 @@ export default class Scorecard extends Component {
     return (
       <View style={styles.row} key={"Hole" + row.holeNumber}>
         <Text style={styles.column}>{row.holeNumber}</Text>
-        <Text style={styles.column}>{row.par}</Text>
-        <Text style={[styles.column, styles.yardsCol]}>{row.yards}</Text>
+        <TextInput
+          key={"par"+row.holeNumber}
+          style={styles.column}
+          keyboardType='numeric'
+          maxLength={1}
+          onChangeText={(text) => {
+            this.setState(prevState => ({
+              scores: prevState.scores.map(
+                hole => (hole.holeNumber === row.holeNumber ? Object.assign(hole, {["par"]: parseInt(text)}) : hole)
+              )
+            }))
+          }}
+        >
+          {row["par"] ? row["par"] : ''}
+        </TextInput>
+        {/* <Text style={styles.column}>{row.par}</Text> */}
+        <TextInput
+          key={"yards"+row.holeNumber}
+          style={[styles.column, styles.yardsCol]}
+          keyboardType='numeric'
+          maxLength={3}
+          onChangeText={(text) => {
+            this.setState(prevState => ({
+              scores: prevState.scores.map(
+                hole => (hole.holeNumber === row.holeNumber ? Object.assign(hole, {["yards"]: parseInt(text)}) : hole)
+              )
+            }))
+          }}
+        >
+          {row["yards"] ? row["yards"] : ''}
+        </TextInput>
+        {/* <Text style={[styles.column, styles.yardsCol]}>{row.yards}</Text> */}
         {playerScores}
       </View>
     );
