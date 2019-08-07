@@ -23,8 +23,9 @@ export default class Scorecard extends Component {
     return (
       <View style={styles.row} key="titleRow">
         <Text style={styles.column}>Hole</Text>
-        <Text style={styles.column}>Par</Text>
         <Text style={[styles.column, styles.yardsCol]}>Yards</Text>
+        <Text style={styles.column}>Par</Text>
+        <Text style={styles.column}>Stroke Index</Text>
         {playerNames}
       </View>
     )
@@ -52,8 +53,9 @@ export default class Scorecard extends Component {
     return (
       <View style={[styles.row, styles.totalRow]} key="totalsRow">
         <Text style={styles.column}>TOTAL</Text>
-        <Text style={styles.column}>{parTotal}</Text>
         <Text style={[styles.column, styles.yardsCol]}>{yardsTotal}</Text>
+        <Text style={styles.column}>{parTotal}</Text>
+        <Text style={styles.column}>OUT</Text>
         {playerTotals}
       </View>
     )
@@ -95,22 +97,6 @@ export default class Scorecard extends Component {
       <View style={styles.row} key={"Hole" + row.holeNumber}>
         <Text style={styles.column}>{row.holeNumber}</Text>
         <TextInput
-          key={"par"+row.holeNumber}
-          style={styles.column}
-          keyboardType='numeric'
-          maxLength={1}
-          onChangeText={(text) => {
-            this.setState(prevState => ({
-              scores: prevState.scores.map(
-                hole => (hole.holeNumber === row.holeNumber ? Object.assign(hole, {["par"]: parseInt(text)}) : hole)
-              )
-            }))
-          }}
-        >
-          {row["par"] ? row["par"] : ''}
-        </TextInput>
-        {/* <Text style={styles.column}>{row.par}</Text> */}
-        <TextInput
           key={"yards"+row.holeNumber}
           style={[styles.column, styles.yardsCol]}
           keyboardType='numeric'
@@ -125,7 +111,36 @@ export default class Scorecard extends Component {
         >
           {row["yards"] ? row["yards"] : ''}
         </TextInput>
-        {/* <Text style={[styles.column, styles.yardsCol]}>{row.yards}</Text> */}
+        <TextInput
+          key={"par"+row.holeNumber}
+          style={styles.column}
+          keyboardType='numeric'
+          maxLength={1}
+          onChangeText={(text) => {
+            this.setState(prevState => ({
+              scores: prevState.scores.map(
+                hole => (hole.holeNumber === row.holeNumber ? Object.assign(hole, {["par"]: parseInt(text)}) : hole)
+              )
+            }))
+          }}
+        >
+          {row["par"] ? row["par"] : ''}
+        </TextInput>
+        <TextInput
+          key={"SI"+row.holeNumber}
+          style={styles.column}
+          keyboardType='numeric'
+          maxLength={2}
+          onChangeText={(text) => {
+            this.setState(prevState => ({
+              scores: prevState.scores.map(
+                hole => (hole.holeNumber === row.holeNumber ? Object.assign(hole, {["SI"]: parseInt(text)}) : hole)
+              )
+            }))
+          }}
+        >
+          {row["SI"] ? row["SI"] : ''}
+        </TextInput>
         {playerScores}
       </View>
     );
