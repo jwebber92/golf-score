@@ -7,8 +7,8 @@
 import React from 'react';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
-import NewGame from './newGame';
-import Scorecard from './scorecard';
+import NewGame from './src/components/newGame';
+import Scorecard from './src/components/scorecard';
 
 const AppNavigator = createStackNavigator(
   {

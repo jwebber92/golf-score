@@ -3,10 +3,9 @@
  */
 
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TextInput, Alert, TouchableHighlight} from 'react-native';
+import {StyleSheet, Text, View, TextInput, TouchableHighlight} from 'react-native';
 
-type Props = {};
-export default class NewGame extends Component<Props> {
+export default class NewGame extends Component {
   state={
     holes: 0,
     players: [],

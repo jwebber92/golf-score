@@ -3,8 +3,9 @@
  */
 
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TextInput} from 'react-native';
-import scoresJson from './scores.json';
+import {Text, View, TextInput} from 'react-native';
+import styles from './scorecard/styles';
+import scoresJson from '../assets/scores.json';
 
 export default class Scorecard extends Component {
   state = {
@@ -15,9 +16,9 @@ export default class Scorecard extends Component {
   }
 
   renderTitleRow() {
-    let playerNames = [];
+    let playerNameCells = [];
     for (let i=1; i<this.state.numberOfPlayers+1; i++) {
-      playerNames.push(<Text key={"player"+i+"name"} style={styles.column}>{this.state.playerNames[i-1] || ("Player "+i)}</Text>)
+      playerNameCells.push(<Text key={"player"+i+"name"} style={styles.column}>{this.state.playerNames[i-1] || ("Player "+i)}</Text>)
     }
 
     return (
@@ -26,7 +27,7 @@ export default class Scorecard extends Component {
         <Text style={[styles.column, styles.yardsCol]}>Yards</Text>
         <Text style={styles.column}>Par</Text>
         <Text style={styles.column}>Stroke Index</Text>
-        {playerNames}
+        {playerNameCells}
       </View>
     )
   }
@@ -159,50 +160,3 @@ export default class Scorecard extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  title: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  comment: {
-    textAlign: 'left',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  scorecard: {
-    fontSize: 14,
-    textAlign: 'left',
-  },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-//    flex: 1,
-//    width: '100%',
-  },
-  totalRow: {
-    borderTopWidth: 1.5,
-  },
-  column: {
-    display: 'flex',
-    flexDirection: 'column',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-//    flexBasis: '100%',
-//    flex: 1,
-    padding: 5,
-    color: '#333333',
-    borderWidth: 0.5,
-  },
-  yardsCol: {
-    backgroundColor: 'yellow',
-  },
-});
