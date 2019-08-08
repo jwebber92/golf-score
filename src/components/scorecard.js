@@ -1,10 +1,12 @@
 /**
- * Scorecard page showing current scores
+ * Scorecard page main file
  */
 
 import React, {Component} from 'react';
 import {Text, View, TextInput} from 'react-native';
+
 import styles from './scorecard/styles';
+// import ScorecardTable from './scorecard/scorecardTable';
 import scoresJson from '../assets/scores.json';
 
 export default class Scorecard extends Component {
@@ -153,6 +155,12 @@ export default class Scorecard extends Component {
         <Text style={styles.title}>Scorecard</Text>
         <Text style={styles.comment}>Course: My Favourite Green</Text>
         <Text style={styles.comment}>Date: 1st January 2000</Text>
+        {/* <ScorecardTable 
+          scores={this.state.scores}
+          numberOfPlayers={this.state.numberOfPlayers}
+          numberOfHoles={this.state.numberOfHoles}
+          playerNames={this.state.playerNames}
+        /> */}
         {this.renderTitleRow()}
         {this.renderScoreRows()}
         {this.renderTotalRow()}
