@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react';
-import {Text, View, TextInput} from 'react-native';
+import {ScrollView, Text, View, TextInput} from 'react-native';
 
 import styles from './scorecard/styles';
 // import ScorecardTable from './scorecard/scorecardTable';
@@ -151,7 +151,7 @@ export default class Scorecard extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.scrollview}>
         <Text style={styles.title}>Scorecard</Text>
         <Text style={styles.comment}>Course: My Favourite Green</Text>
         <Text style={styles.comment}>Date: 1st January 2000</Text>
@@ -164,7 +164,7 @@ export default class Scorecard extends Component {
         {this.renderTitleRow()}
         {this.renderScoreRows()}
         {this.renderTotalRow()}
-      </View>
+      </ScrollView>
     )
   }
 }
